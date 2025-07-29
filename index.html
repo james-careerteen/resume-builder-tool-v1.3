@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CareerTeen Resume Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <section id="hero" class="hero" style="background-image: url('hero-image.png');">
+    <div class="hero-text">
+      <h1>CareerTeen<br>Resume<br>Builder</h1>
+      <p>Create an awesome resume with ease! Use templates, include a cover letter, and even get help from AI.</p>
+      <button id="get-started">Get Started</button>
+    </div>
+  </section>
+
+  <!-- Resume Modal -->
+  <div id="resume-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close-x" id="modal-close-x">&times;</button>
+      <h2>Create / Edit Resume</h2>
+      
+      <!-- Tab Navigation -->
+      <div class="tab-navigation">
+        <button type="button" class="tab-button active" data-tab="resume-details">Resume Details</button>
+        <button type="button" class="tab-button" data-tab="cover-letter-tab">Cover Letter</button>
+      </div>
+      
+      <form id="resume-form">
+        <input type="hidden" id="resume-id" />
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <!-- Resume Details Tab -->
+          <div id="resume-details" class="tab-pane active">
+            <label>Job Title:</label>
+            <input type="text" id="resume-name" required />
+
+            <label>Full Name:</label>
+            <input type="text" id="full-name" required />
+
+            <label>Profile:</label>
+            <textarea id="profile" rows="3"></textarea>
+
+            <label>Skills:</label>
+            <textarea id="skills" rows="3"></textarea>
+
+            <label>Experience:</label>
+            <textarea id="experience" rows="3"></textarea>
+
+            <label>Education:</label>
+            <textarea id="education" rows="3"></textarea>
+
+            <label>Referees:</label>
+            <textarea id="referees" rows="3"></textarea>
+          </div>
+
+          <!-- Cover Letter Tab -->
+          <div id="cover-letter-tab" class="tab-pane">
+            <label>Cover Letter (Optional):</label>
+            <textarea id="cover-letter" rows="16" placeholder="Date:
+
+The companies address:
+
+Dear hiring team:
+
+I am writing to express my interest in the...
+
+Kind regards,
+
+Your name"></textarea>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit">Save Resume</button>
+          <button type="button" id="clear-form">Clear</button>
+          <button type="button" id="close-resume-modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Resume List -->
+  <h2>Saved Resumes</h2>
+  <div class="table-container">
+    <table id="resume-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Profile</th>
+          <th>Updated</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Invisible preview container for jsPDF -->
+  <div id="pdf-preview" style="position: absolute; top: -9999px; left: -9999px; background: white; padding: 20px; font-family: Arial;"></div>
+
+  <!-- Resume Preview Modal -->
+  <div id="preview-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close-x" id="preview-modal-close-x">&times;</button>
+      <h3>Preview & Export Your Resume</h3>
+
+      <!-- Tab Navigation for Preview Modal -->
+      <div class="tab-navigation">
+        <button type="button" class="tab-button active" data-tab="resume-preview-tab">Resume Preview</button>
+        <button type="button" class="tab-button" data-tab="cover-letter-preview-tab">Cover Letter Preview</button>
+      </div>
+
+      <label for="template-select">Choose a Template:</label>
+      <select id="template-select">
+        <option value="template1">Template 1 (Simple)</option>
+        <option value="template2">Template 2 (Fancy)</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="include-cover-letter" />
+        Include cover letter as separate file
+      </label>
+
+      <!-- Tab Content for Preview Modal -->
+      <div class="tab-content">
+        <!-- Resume Preview Tab -->
+        <div id="resume-preview-tab" class="tab-pane active">
+          <div id="resume-preview-container"></div>
+        </div>
+
+        <!-- Cover Letter Preview Tab -->
+        <div id="cover-letter-preview-tab" class="tab-pane">
+          <div id="cover-letter-preview-container"></div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="print-resume">Print</button>
+        <button id="email-resume">Email</button>
+        <button id="download-resume">Download PDF</button>
+        <button id="close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="main.js"></script>
+  <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+</body>
+</html>
